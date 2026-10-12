@@ -112,6 +112,13 @@ command -v systemctl >/dev/null || die "systemctl が見つかりません。sys
 if [ -r /etc/os-release ]; then
   ok "OS: $(. /etc/os-release && echo "${PRETTY_NAME}")"
 fi
+# 時刻がずれていると HTTPS 通信や Discord への接続に失敗することがある
+if [ "$(timedatectl show -p NTPSynchronized --value 2>/dev/null || true)" = "yes" ]; then
+  ok "時刻は同期されています。"
+else
+  warn "時刻が同期されていない可能性があります（現在: $(date '+%Y-%m-%d %H:%M:%S')）。"
+  warn "ずれていると Discord に接続できないことがあります。sudo timedatectl set-ntp true で同期を有効にできます。"
+fi
 if systemctl list-unit-files "${APP_NAME}.service" --no-legend 2>/dev/null | grep -q "${APP_NAME}"; then
   warn "すでにインストールされています。main.py とパッケージを更新し、Bot を再起動します。"
 fi
