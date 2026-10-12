@@ -7,6 +7,8 @@ Discord に投稿されたメッセージに秋月電子通商の商品ページ
 - 取得した商品情報は 10 分間キャッシュします。
 - 存在しない商品番号のリンクや取得エラーは無視します（何も投稿しません）。
 
+<img width="706" height="666" alt="image" src="https://github.com/user-attachments/assets/8f0b69a3-dd54-46bf-b466-71bc209cd521" />
+
 ## ファイル構成
 
 | ファイル | 内容 |
