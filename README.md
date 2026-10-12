@@ -19,13 +19,13 @@ Discord に投稿されたメッセージに秋月電子通商の商品ページ
 
 - Ubuntu 22.04 以降（Python 3.10 以上、systemd）
 - インターネット接続（Discord と akizukidenshi.com への HTTPS 通信）
-- CPU やメモリはほとんど使いません。N150 程度の小型 PC で十分です。
+- CPU やメモリはほとんど使いません
 
 ---
 
 ## セットアップ
 
-まっさらな Ubuntu マシンに導入する前提の手順です。`setup.sh` が手順を 1 ステップずつ案内するので、表示に従って進めてください。
+Ubuntu をインストールしたホストマシンに導入する前提の手順です。`setup.sh` が手順を 1 ステップずつ案内するので、表示に従って進めてください。
 
 ### 1. Discord のアカウントとサーバーを用意する
 
@@ -33,23 +33,17 @@ Bot を追加するサーバーで「サーバー管理」の権限を持って�
 
 ### 2. リポジトリを Ubuntu マシンに置く
 
-Git でクローンする場合:
+Git をインストールします。
 
 ```bash
 sudo apt update && sudo apt install -y git
 ```
 
-```bash
-git clone <このリポジトリの URL> akizuki-embedder
-```
-
-ほかの PC からコピーする場合は、`main.py`、`setup.sh`、`requirements.txt` の 3 つを同じディレクトリに置いてください。Windows の PC から送る場合は、PowerShell で次のように実行します（`user@ubuntu-host` は Ubuntu マシンの「ユーザー名@ホスト名（または IP アドレス）」に置き換えます）。
+Git リポジトリをクローンします。
 
 ```bash
-scp -r akizuki-embedder user@ubuntu-host:~/
+git clone https://github.com/53175ddd/akizuki-embedder akizuki-embedder
 ```
-
-> Ubuntu 側で SSH を受け付けていない場合は、先に Ubuntu で `sudo apt install -y openssh-server` を実行してください。USB メモリなどでコピーしてもかまいません。
 
 ### 3. setup.sh を実行する
 
@@ -79,8 +73,6 @@ cd akizuki-embedder && sudo bash setup.sh
 ### 4. 動作を確認する
 
 Bot がいるチャンネルに商品ページのリンク（例: `https://akizukidenshi.com/catalog/g/g108001/`）を投稿し、embed が投稿されることを確認してください。
-
-> **注意**: 同じトークンの Bot をほかの PC でも動かしていると、リンク 1 つに embed が 2 回投稿されます。セットアップの前に、ほかの環境の Bot を止めてください。
 
 ---
 
